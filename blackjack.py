@@ -1,6 +1,11 @@
 from random import randint, choice
 
 #Create a Class for Card
+class Card:
+    def __init__(self, name, value):
+        self.name = name
+        self.value = value
+        
 
 intro = "Welcome to Blackjack, to play, please type 'play'."
 
