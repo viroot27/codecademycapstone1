@@ -158,13 +158,48 @@ def blackjack_game(deck):
         #if both are Ace, make sure the first card is stored as one
         if len(player_cards) == 2:
             if player_cards[0].value == 11 and player_cards[1].value == 11:
-                player_cards[0].card_value = 1
+                player_cards[0].value = 1
                 player_score -= 10
 
         #print cards and score
         print("Player's Cards: ")
         print_cards(player_cards, False)
         print("Player's Score: ", player_score)
+
+        input()
+
+        # give dealer a random card
+        dealer_card = choice(deck)
+        dealer_cards.append(dealer_card)
+        deck.remove(dealer_card)
+
+        #update dealer score
+        dealer_score += dealer_card.value
+
+        #printing dealer's cards keeping in mind to hide the second card and card value
+        print("Dealer's Cards: ")
+        if len(dealer_cards) == 1:
+            print_cards(dealer_cards, False)
+            print("Dealer's Score = ", dealer_score)
+        else: 
+            print_cards(dealer_cards[:-1], True )
+            print("Dealer's Score = ", dealer_score - dealer_cards[-1].value)
+
+        # in case both cards are ace, make the second ace value one
+        if len(dealer_cards) == 2:
+            if dealer_cards[0].value == 11 and dealer_cards[1].value == 11:
+                dealer_cards[1].value == 1
+                dealer_score -= 10
+
+        input()
+
+    #In case player gets a blackjack initially
+    if player_score == 21:
+        print("Player has a Blackjack!!!")
+        print("Player wins!")
+
+
+
 
 
 
